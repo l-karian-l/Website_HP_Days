@@ -1,6 +1,6 @@
 project:
   type: website
-  output-dir: docs
+output-dir: C:\Users\Анастасия\Music\HPD\Website_HP_Days\docs
 
 website:
   title: "Website"
