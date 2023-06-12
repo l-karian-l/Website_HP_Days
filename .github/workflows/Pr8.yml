@@ -29,7 +29,7 @@ jobs:
           tinytex: true    
           
   deploy:
-    runs-on: actions/upload-pages-artifact
+    runs-on: ubuntu-latest
 
     # Add a dependency to the build job
     needs: build
