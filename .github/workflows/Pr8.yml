@@ -12,10 +12,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    runs-on: ubuntu-latest
-    
+  # This workflow contains a single job called "build" 
   deploy:
     runs-on: ubuntu-latest
     # Add a dependency to the build job
@@ -28,6 +25,9 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    
+  build:
+    runs-on: ubuntu-latest
       
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
