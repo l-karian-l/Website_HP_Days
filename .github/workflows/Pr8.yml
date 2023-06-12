@@ -45,5 +45,6 @@ jobs:
     
     steps:
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4.4.2
+        id: deployment
+        uses: actions/deploy-pages@v1
 
