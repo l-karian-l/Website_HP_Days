@@ -14,6 +14,7 @@ on:
 jobs:
    # This workflow contains a single job called "build"
   build:
+    runs-on: actions/upload-pages-artifact
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -23,11 +24,11 @@ jobs:
         uses: quarto-dev/quarto-actions/setup@v2
         with:
           tinytex: true
-    runs-on: ubuntu-latest
       
           
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: actions/upload-pages-artifact
+
     # Add a dependency to the build job
     needs: build
     
