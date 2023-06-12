@@ -12,11 +12,9 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-          
    # This workflow contains a single job called "build"
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-    concurrency: ci-${{ github.ref }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -30,9 +28,22 @@ jobs:
         with:
           tinytex: true
           
-      - name: Deploy 
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages # The branch the action should deploy to.
-          folder: build # The folder the action should
+ 
+  deploy:
+    runs-on: ubuntu-latest
 
+    # Add a dependency to the build job
+    needs: build
+    
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write 
+   
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
